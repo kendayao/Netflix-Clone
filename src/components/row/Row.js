@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Row.css'
 
-const Row=({title, fetch})=>{
+const Row=({title, fetch, isLargeRow})=>{
 
     const [movies, setMovies]=useState([]);
 
@@ -16,9 +16,9 @@ const Row=({title, fetch})=>{
     return(
         <div className="row">
             <h2>{title}</h2>
-            <div className="row_posters">
+            <div className='row_posters'>
                 {movies.map(movie=>(
-                    <img className="row_poster" key={movie.id} src={base_url+movie.poster_path} alt={movie.name} />
+                    <img className={`row_poster ${isLargeRow && "row_posterLarge"}`} key={movie.id} src={isLargeRow?base_url+movie.poster_path:base_url+movie.backdrop_path} alt={movie.name} />
                 ))}
             </div>
         </div>

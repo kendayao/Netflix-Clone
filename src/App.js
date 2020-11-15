@@ -1,12 +1,14 @@
 import React from 'react'
 import './App.css';
-import Row from './components/Row'
+import Row from './components/row/Row'
 import API from './API'
+import Banner from './components/banner/Banner'
 
 function App() {
   return (
     <div className="App">
-      <Row title="NETFLIX ORIGINALS" fetch={API.fetchNetflixOriginals} />
+      <Banner />
+      <Row title="NETFLIX ORIGINALS" fetch={API.fetchNetflixOriginals} isLargeRow />
       <Row title="Trending Now" fetch={API.fetchTrending} />
       <Row title="Top Rated" fetch={API.fetchTopRated} />
       <Row title="Action Movies" fetch={API.fetchActionMovies} />
