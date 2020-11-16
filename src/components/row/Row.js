@@ -36,14 +36,25 @@ const Row=({title, fetch, isLargeRow})=>{
         }
     }
 
-    console.log(trailerUrl)
+    const handleNull=()=>{
+        if(movies.backdrop_path===null){
+            movies.backdrop_path="/bvlmWNW0PVDKaVvMWZvMqpQbsnH.jpg"
+        }else{
+            return movies.backdrop_path
+        }
+    }
     
+   
+    
+    console.log(movies)
     return(
         <div className="row">
             <h2>{title}</h2>
             <div className='row_posters'>
                 {movies.map(movie=>(
-                    <img onClick={()=>handleClick(movie)} className={`row_poster ${isLargeRow && "row_posterLarge"}`} key={movie.id} src={isLargeRow?base_url+movie?.poster_path:base_url+movie?.backdrop_path} alt={movie.name} />
+                    movie.backdrop_path?
+                    <img onClick={()=>handleClick(movie)} className={`row_poster ${isLargeRow && "row_posterLarge"}`} key={movie.id} src={isLargeRow?base_url+movie?.poster_path:base_url+movie?.backdrop_path} alt={movie.name} />:
+                    <img onClick={()=>handleClick(movie)} className={`row_poster ${isLargeRow && "row_posterLarge"}`} key={movie.id} src={base_url+'/bvlmWNW0PVDKaVvMWZvMqpQbsnH.jpg'} alt={movie.name} />
                 ))}
             </div>
             {trailerUrl&&<YouTube videoId={trailerUrl} opts={opts}/>}
