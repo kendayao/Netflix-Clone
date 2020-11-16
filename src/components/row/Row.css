@@ -3,6 +3,10 @@
   color: white;
 }
 
+.row_title {
+  margin-left: 18px;
+}
+
 .row_posters {
   display: flex;
   overflow-y: hidden;
