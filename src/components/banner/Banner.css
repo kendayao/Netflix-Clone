@@ -10,7 +10,7 @@
   position: absolute;
   top: 180px;
   right: 100px;
-  border: 1px solid transparent;
+  border: 3px solid rgba(67, 67, 67, 0.187);
   border-radius: 15px;
 }
 

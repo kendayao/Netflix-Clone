@@ -11,14 +11,15 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList})=>{
     
     const [movies, setMovies]=useState([]);
     
+    
 
     useEffect(()=>{
         isMyList? fetch().then((res)=>{
-            setMyList(res.data.results[5])}):
+            setMyList(res.data.results[Math.floor(Math.random()*res.data.results.length)])}):
         fetch().then((res)=>{
             setMovies(res.data.results)})
           
-    },[])
+    },[fetch,setMyList, isMyList])
 
     const base_url='https://image.tmdb.org/t/p/original'
 
