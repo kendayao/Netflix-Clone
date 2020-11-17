@@ -6,6 +6,14 @@
   padding-top: 150px;
 }
 
+.trailer_container {
+  position: absolute;
+  top: 180px;
+  right: 100px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+
 .banner_contents {
   margin-left: 30px;
   padding-top: 140px;

@@ -4,13 +4,14 @@ import Row from './components/row/Row'
 import API from './API'
 import Banner from './components/banner/Banner'
 import Nav from './components/navbar/Nav'
+import{connect} from 'react-redux'
 
-function App() {
+function App({myList}) {
   return (
     <div className="App">
       <Nav />
       <Banner />
-      <Row title="My List" fetch={API.fetchNetflixOriginals} isLargeRow isMyList />
+      <Row title="My List" fetch={API.fetchComedyMovies} isLargeRow isMyList/>
       <Row title="NETFLIX ORIGINALS" fetch={API.fetchNetflixOriginals} isLargeRow />
       <Row title="Trending Now" fetch={API.fetchTrending} isLargeRow  />
       <Row title="Top Rated" fetch={API.fetchTopRated} isLargeRow />
@@ -23,4 +24,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps=state=>({
+  myList: state.myList.myCurrentList
+})
+
+export default connect(mapStateToProps)(App)
