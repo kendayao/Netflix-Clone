@@ -7,7 +7,7 @@
   margin-left: 18px;
 }
 
-.row_test {
+.row_hide {
   display: none;
 }
 
@@ -34,7 +34,7 @@
   transform: scale(1.09);
 }
 
-.row_poster_mylist {
+.row_poster_myList {
   object-fit: contain;
   max-height: 250px;
   margin-right: 10px;

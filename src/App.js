@@ -4,9 +4,8 @@ import Row from './components/row/Row'
 import API from './API'
 import Banner from './components/banner/Banner'
 import Nav from './components/navbar/Nav'
-import{connect} from 'react-redux'
 
-function App({myList}) {
+function App() {
   return (
     <div className="App">
       <Nav />
@@ -24,8 +23,5 @@ function App({myList}) {
   );
 }
 
-const mapStateToProps=state=>({
-  myList: state.myList.myCurrentList
-})
 
-export default connect(mapStateToProps)(App)
+export default App

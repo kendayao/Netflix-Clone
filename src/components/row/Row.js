@@ -33,11 +33,11 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})
         
         <div className="row">
             {isMyList?
-            <h2 className={`${myList.length!==0?'row_title': 'row_test'}`}>{title}</h2>:
+            <h2 className={`${myList.length!==0?'row_title': 'row_hide'}`}>{title}</h2>:
             <h2 className='row_title'>{title}</h2>}
             <div className='row_posters'>
                 {isMyList?myList.map((movie)=>(
-                    <img onClick={()=>handleClick(movie)} className="row_poster_mylist " key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
+                    <img onClick={()=>handleClick(movie)} className="row_poster_myList" key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
                 )):
                 movies.map((movie)=>(
                     <img onClick={()=>handleClick(movie)} className="row_poster" key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />

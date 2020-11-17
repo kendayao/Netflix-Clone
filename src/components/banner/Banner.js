@@ -68,7 +68,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
                     <button onClick={()=>handleClick(movie)} className="banner_button">Play Trailer</button>}
                     {myList.some(listItem=>listItem.id===movie.id)?
                     <button onClick={()=>removeFromList(movie)}className="banner_button">Remove From My List</button>:
-                    <button onClick={()=>addToList(movie)} className="banner_button">My List</button>}
+                    <button onClick={()=>addToList(movie)} className="banner_button">Add To My List</button>}
                 </div>
                 <h1 className="banner_description">{truncate(movie?.overview, 250)}</h1>
             </div>
