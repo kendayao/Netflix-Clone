@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import './Row.css'
 import YouTube from 'react-youtube'
 import movieTrailer from 'movie-trailer'
+import {setMovie} from '../../redux/movie/movie.action'
+import {connect} from 'react-redux'
 
-const Row=({title, fetch, topRow, isMyList})=>{
+const Row=({title, fetch, isMyList, setMovie})=>{
 
     const [movies, setMovies]=useState([]);
     const [trailerUrl, setTrailerUrl]=useState("")
@@ -25,15 +27,19 @@ const Row=({title, fetch, topRow, isMyList})=>{
         }
     }
     
+    // const handleClick=(movie)=>{
+    //     if(trailerUrl){
+    //         setTrailerUrl('');
+    //     }else{
+    //         movieTrailer(movie?.name || movie.title || movie?.original_name || "").then(url=>{
+    //             const urlParams=new URLSearchParams(new URL(url).search)
+    //             setTrailerUrl(urlParams.get('v'))
+    //         }).catch((error)=>console.log(error))
+    //     }
+    // }
+
     const handleClick=(movie)=>{
-        if(trailerUrl){
-            setTrailerUrl('');
-        }else{
-            movieTrailer(movie?.name || movie.title || movie?.original_name || "").then(url=>{
-                const urlParams=new URLSearchParams(new URL(url).search)
-                setTrailerUrl(urlParams.get('v'))
-            }).catch((error)=>console.log(error))
-        }
+        setMovie(movie)
     }
 
     return(
@@ -54,4 +60,10 @@ const Row=({title, fetch, topRow, isMyList})=>{
     )
 }
 
-export default Row
+
+
+const mapDispatchToProps=dispatch=>({
+    setMovie: movie=>dispatch(setMovie(movie))
+})
+
+export default connect(null, mapDispatchToProps)(Row)

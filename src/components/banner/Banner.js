@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import './Banner.css'
 import API from '../../API'
+import{connect} from 'react-redux'
+import {setMovie} from '../../redux/movie/movie.action'
 
-function Banner(){
+function Banner({setMovie, movie}){
 
-    const [movie, setMovie]=useState([]);
-    const [myList, setMyList]=useState([])
+    
+    // const [myList, setMyList]=useState([])
 
     useEffect(()=>{
         async function fetchData(){
@@ -14,20 +16,16 @@ function Banner(){
             })
         }
         fetchData();
-    },[])
+    },[setMovie])
 
     
     function truncate(str, n){
         return str?.length>n?str.substr(0, n-1) + "...": str;
     }
-
-    const handleClick=()=>{
-        setMyList([...myList, movie])
-    }
-
-    console.log(myList)
+    
 
     return(
+        
         <header className="banner" style={{
             backgroundSize: 'cover',
             backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
@@ -41,7 +39,7 @@ function Banner(){
                 <h1 className='banner_title'>{movie?.title || movie?.name || movie?.orignal_name}</h1>
                 <div className="banner_buttons">
                     <button className="banner_button">Play</button>
-                    <button onClick={handleClick} className="banner_button">My List</button>
+                    <button className="banner_button">My List</button>
                 </div>
                 <h1 className="banner_description">{truncate(movie?.overview, 250)}</h1>
             </div>
@@ -53,4 +51,12 @@ function Banner(){
     )
 }
 
-export default Banner
+const mapDispatchToProps=dispatch=>({
+    setMovie: movie=>dispatch(setMovie(movie))
+})
+
+const mapStateToProps=state=>({
+    movie: state.movie.currentMovie
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Banner)
