@@ -11,7 +11,6 @@ import movieTrailer from 'movie-trailer'
 
 function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl, setTrailerUrl}){
 
-
     useEffect(()=>{
         function fetchData(){
             API.fetchNetflixOriginals().then(res=>{
@@ -19,11 +18,8 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
             })
         }
         fetchData();
-
-        
     },[])
 
-    
     function truncate(str, n){
         return str?.length>n?str.substr(0, n-1) + "...": str;
     }

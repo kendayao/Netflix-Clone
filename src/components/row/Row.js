@@ -44,9 +44,7 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})
                 ))}
             </div>
             
-        </div>
-    
-        
+        </div>  
     )
 }
 
