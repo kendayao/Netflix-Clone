@@ -21,19 +21,22 @@
 .row_poster {
   object-fit: contain;
   width: 100%;
-  max-height: 100px;
   margin-right: 10px;
+  max-height: 250px;
   transition: transform 450ms;
 }
 
 .row_poster:hover {
-  transform: scale(1.08);
+  transform: scale(1.09);
 }
 
-.row_posterLarge {
+.row_poster_mylist {
+  object-fit: contain;
   max-height: 250px;
+  margin-right: 10px;
+  transition: transform 450ms;
 }
 
-.row_posterLarge:hover {
+.row_poster_myList:hover {
   transform: scale(1.09);
 }

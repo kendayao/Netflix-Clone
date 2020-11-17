@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <Nav />
       <Banner />
+      <Row title="My List" fetch={API.fetchNetflixOriginals} isLargeRow isMyList />
       <Row title="NETFLIX ORIGINALS" fetch={API.fetchNetflixOriginals} isLargeRow />
       <Row title="Trending Now" fetch={API.fetchTrending} isLargeRow  />
       <Row title="Top Rated" fetch={API.fetchTopRated} isLargeRow />

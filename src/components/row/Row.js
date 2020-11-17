@@ -3,7 +3,7 @@ import './Row.css'
 import YouTube from 'react-youtube'
 import movieTrailer from 'movie-trailer'
 
-const Row=({title, fetch, isLargeRow})=>{
+const Row=({title, fetch, topRow, isMyList})=>{
 
     const [movies, setMovies]=useState([]);
     const [trailerUrl, setTrailerUrl]=useState("")
@@ -40,8 +40,11 @@ const Row=({title, fetch, isLargeRow})=>{
         <div className="row">
             <h2 className='row_title'>{title}</h2>
             <div className='row_posters'>
-                {movies.map(movie=>(
-                    <img onClick={()=>handleClick(movie)} className={`row_poster ${isLargeRow && "row_posterLarge"}`} key={movie.id} src={isLargeRow?base_url+movie?.poster_path:base_url+movie?.backdrop_path} alt={movie.name} />
+                {isMyList?movies.filter((movie, index)=>index<3).map((movie)=>(
+                    <img onClick={()=>handleClick(movie)} className="row_poster_mylist " key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
+                )):
+                movies.map((movie)=>(
+                    <img onClick={()=>handleClick(movie)} className="row_poster" key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
                 ))}
             </div>
             {trailerUrl&&<YouTube videoId={trailerUrl} opts={opts}/>}
