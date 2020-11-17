@@ -2,7 +2,7 @@
 
 ## Description
 
-This application is a replica of the popular steaming service, Netflix built using React.js and hosted on firebase.
+This application is a replica of the popular steaming service, Netflix. Built using React.js, redux and react hooks to manage state, and firebase for web hosting.
 
 ## Table of Contents
 
@@ -21,6 +21,10 @@ This application is a replica of the popular steaming service, Netflix built usi
 
 - React.js
 - Firebase
+- React Hooks
+- Redux
+- TMDB API
+- React Youtube
 - CSS
 - HTML
 
@@ -32,7 +36,7 @@ No installation needed.
 
 ## Usage
 
-The deployed link will take you to the homepage. On the homepage, click on one of the posters to play the trailer for the show/movie. Click the poster again to hide the trailer.
+The deployed link will take you to the homepage. On the homepage, the banner will display a netflix original. Click on play trailer to play a trailer or click on add to my list to add the movie to the My List row. Scroll up, down, left, and right to display more movies.
 
 ## License
 
