@@ -5,13 +5,12 @@ import{connect} from 'react-redux'
 import {setMovie} from '../../redux/movie/movie.action'
 import {addToList} from '../../redux/myList/myList.action'
 import {removeFromList} from '../../redux/myList/myList.action'
+import {setTrailerUrl} from '../../redux/trailer/trailer.action'
 import YouTube from 'react-youtube'
 import movieTrailer from 'movie-trailer'
 
-function Banner({setMovie, movie, addToList, myList, removeFromList}){
+function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl, setTrailerUrl}){
 
-    const [trailerUrl, setTrailerUrl]=useState("")
-    // const [myList, setMyList]=useState([])
 
     useEffect(()=>{
         function fetchData(){
@@ -40,7 +39,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList}){
 
     const handleClick=(movie)=>{
         if(trailerUrl){
-            setTrailerUrl('');
+            setTrailerUrl("");
         }else{
             movieTrailer(movie?.name || movie.title || movie?.original_name || "").then(url=>{
                 const urlParams=new URLSearchParams(new URL(url).search)
@@ -86,12 +85,14 @@ function Banner({setMovie, movie, addToList, myList, removeFromList}){
 const mapDispatchToProps=dispatch=>({
     setMovie: movie=>dispatch(setMovie(movie)),
     addToList: movie=>dispatch(addToList(movie)),
-    removeFromList: movie=>dispatch(removeFromList(movie))
+    removeFromList: movie=>dispatch(removeFromList(movie)),
+    setTrailerUrl: url=>dispatch(setTrailerUrl(url))
 })
 
 const mapStateToProps=state=>({
     movie: state.movie.currentMovie,
-    myList: state.myList.myCurrentList
+    myList: state.myList.myCurrentList,
+    trailerUrl: state.trailerUrl.currentTrailerUrl
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Banner)

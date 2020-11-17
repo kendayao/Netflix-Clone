@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './Row.css'
 
-
+import {setTrailerUrl} from '../../redux/trailer/trailer.action'
 import {setMovie} from '../../redux/movie/movie.action'
 import {setMyList} from '../../redux/myList/myList.action'
 import {connect} from 'react-redux'
 
 
-const Row=({title, fetch, isMyList, setMovie, myList, setMyList})=>{
+const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})=>{
     
     const [movies, setMovies]=useState([]);
     
@@ -23,21 +23,9 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList})=>{
 
     const base_url='https://image.tmdb.org/t/p/original'
 
-    
-    
-    // const handleClick=(movie)=>{
-    //     if(trailerUrl){
-    //         setTrailerUrl('');
-    //     }else{
-    //         movieTrailer(movie?.name || movie.title || movie?.original_name || "").then(url=>{
-    //             const urlParams=new URLSearchParams(new URL(url).search)
-    //             setTrailerUrl(urlParams.get('v'))
-    //         }).catch((error)=>console.log(error))
-    //     }
-    // }
-
     const handleClick=(movie)=>{
         setMovie(movie)
+        setTrailerUrl("")
         window.scrollTo(0,0)
     }
     
@@ -64,7 +52,8 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList})=>{
 
 const mapDispatchToProps=dispatch=>({
     setMovie: movie=>dispatch(setMovie(movie)),
-    setMyList: movies=>dispatch(setMyList(movies))
+    setMyList: movies=>dispatch(setMyList(movies)),
+    setTrailerUrl: url=>dispatch(setTrailerUrl(url))
 })
 
 const mapStateToProps=state=>({
