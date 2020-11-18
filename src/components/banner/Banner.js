@@ -25,7 +25,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
     }
     
     const opts={
-        height: "320",
+        height: "430",
         width: "40%",
         playerVars:{
             // https://developers.google.com/youtube/player_parameters
