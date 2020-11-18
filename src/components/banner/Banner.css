@@ -25,6 +25,22 @@
   padding-bottom: 0.3rem;
 }
 
+.trailer_alert {
+  color: #ff0303;
+  padding: 5px;
+  font-weight: 700;
+  margin-top: 10px;
+  background-color: rgba(143, 13, 3, 0.228);
+  border: 1px solid rgba(241, 6, 6, 0.81);
+  border-radius: 5px;
+  text-shadow: 2px 1px #00040a;
+  width: 200px;
+}
+
+.trailer_alert_hide {
+  display: none;
+}
+
 .banner_description {
   width: 45rem;
   line-height: 1.3;

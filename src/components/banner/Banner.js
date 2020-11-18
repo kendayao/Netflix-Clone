@@ -11,6 +11,8 @@ import movieTrailer from 'movie-trailer'
 
 function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl, setTrailerUrl}){
 
+    const [showAlert, setShowAlert]=useState(false)
+
     useEffect(()=>{
         function fetchData(){
             API.fetchNetflixOriginals().then(res=>{
@@ -40,7 +42,11 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
             movieTrailer(movie?.name || movie.title || movie?.original_name || "").then(url=>{
                 const urlParams=new URLSearchParams(new URL(url).search)
                 setTrailerUrl(urlParams.get('v'))
-            }).catch((error)=>console.log(error))
+            }).catch((error)=>
+             setShowAlert(true))
+             setTimeout(()=>{
+                setShowAlert(false);
+              }, 4000);
         }
     }
 
@@ -62,6 +68,9 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
                     {myList.some(listItem=>listItem.id===movie.id)?
                     <button onClick={()=>removeFromList(movie)}className="banner_button">Remove From My List</button>:
                     <button onClick={()=>addToList(movie)} className="banner_button">Add To My List</button>}
+                </div>
+                <div class={showAlert?"trailer_alert": "trailer_alert_hide"}>
+                    Sorry, No Trailer Available
                 </div>
                 <h1 className="banner_description">{truncate(movie?.overview, 250)}</h1>
             </div>
