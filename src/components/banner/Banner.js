@@ -70,7 +70,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
                     <button onClick={()=>addToList(movie)} className="banner_button">Add To My List</button>}
                 </div>
                 <div class={showAlert?"trailer_alert": "trailer_alert_hide"}>
-                    Sorry, No Trailer Available
+                    <i class="fas fa-exclamation-circle"></i> Sorry, No Trailer Available
                 </div>
                 <h1 className="banner_description">{truncate(movie?.overview, 250)}</h1>
             </div>
