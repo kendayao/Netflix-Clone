@@ -46,7 +46,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
              setShowAlert(true))
              setTimeout(()=>{
                 setShowAlert(false);
-              }, 4000);
+              }, 1400);
         }
     }
 
