@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import './Banner.css'
 import API from '../../API'
 import{connect} from 'react-redux'
@@ -6,12 +6,11 @@ import {setMovie} from '../../redux/movie/movie.action'
 import {addToList} from '../../redux/myList/myList.action'
 import {removeFromList} from '../../redux/myList/myList.action'
 import {setTrailerUrl} from '../../redux/trailer/trailer.action'
+import {setAlert} from '../../redux/alert/alert.action'
 import YouTube from 'react-youtube'
 import movieTrailer from 'movie-trailer'
 
-function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl, setTrailerUrl}){
-
-    const [showAlert, setShowAlert]=useState(false)
+function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl, setTrailerUrl, alert, setAlert}){
 
     useEffect(()=>{
         function fetchData(){
@@ -20,7 +19,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
             })
         }
         fetchData();
-    },[])
+    },[setMovie])
 
     function truncate(str, n){
         return str?.length>n?str.substr(0, n-1) + "...": str;
@@ -43,10 +42,10 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
                 const urlParams=new URLSearchParams(new URL(url).search)
                 setTrailerUrl(urlParams.get('v'))
             }).catch((error)=>
-             setShowAlert(true))
+             setAlert(true))
              setTimeout(()=>{
-                setShowAlert(false);
-              }, 1400);
+                setAlert(false);
+              }, 4000);
         }
     }
 
@@ -69,7 +68,7 @@ function Banner({setMovie, movie, addToList, myList, removeFromList, trailerUrl,
                     <button onClick={()=>removeFromList(movie)}className="banner_button">Remove From My List</button>:
                     <button onClick={()=>addToList(movie)} className="banner_button">Add To My List</button>}
                 </div>
-                <div class={showAlert?"trailer_alert": "trailer_alert_hide"}>
+                <div class={alert?"trailer_alert": "trailer_alert_hide"}>
                     <i class="fas fa-exclamation-circle"></i> Sorry, No Trailer Available
                 </div>
                 <h1 className="banner_description">{truncate(movie?.overview, 250)}</h1>
@@ -88,13 +87,15 @@ const mapDispatchToProps=dispatch=>({
     setMovie: movie=>dispatch(setMovie(movie)),
     addToList: movie=>dispatch(addToList(movie)),
     removeFromList: movie=>dispatch(removeFromList(movie)),
-    setTrailerUrl: url=>dispatch(setTrailerUrl(url))
+    setTrailerUrl: url=>dispatch(setTrailerUrl(url)),
+    setAlert: alert=>dispatch(setAlert(alert))
 })
 
 const mapStateToProps=state=>({
     movie: state.movie.currentMovie,
     myList: state.myList.myCurrentList,
-    trailerUrl: state.trailerUrl.currentTrailerUrl
+    trailerUrl: state.trailerUrl.currentTrailerUrl,
+    alert: state.alert.alertState
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Banner)

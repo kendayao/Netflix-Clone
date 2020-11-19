@@ -4,15 +4,14 @@ import './Row.css'
 import {setTrailerUrl} from '../../redux/trailer/trailer.action'
 import {setMovie} from '../../redux/movie/movie.action'
 import {setMyList} from '../../redux/myList/myList.action'
+import {setAlert} from '../../redux/alert/alert.action'
 import {connect} from 'react-redux'
 
 
-const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})=>{
+const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl, setAlert})=>{
     
     const [movies, setMovies]=useState([]);
     
-    
-
     useEffect(()=>{
         isMyList? fetch().then((res)=>{
             setMyList(res.data.results[Math.floor(Math.random()*res.data.results.length)])}):
@@ -25,6 +24,7 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})
 
     const handleClick=(movie)=>{
         setMovie(movie)
+        setAlert(false)
         setTrailerUrl("")
         window.scrollTo(0,0)
     }
@@ -51,7 +51,8 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl})
 const mapDispatchToProps=dispatch=>({
     setMovie: movie=>dispatch(setMovie(movie)),
     setMyList: movies=>dispatch(setMyList(movies)),
-    setTrailerUrl: url=>dispatch(setTrailerUrl(url))
+    setTrailerUrl: url=>dispatch(setTrailerUrl(url)),
+    setAlert: alert=>dispatch(setAlert(alert))
 })
 
 const mapStateToProps=state=>({
