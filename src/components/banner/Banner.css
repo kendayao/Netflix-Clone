@@ -80,3 +80,32 @@
     #111
   );
 }
+
+@media (max-width: 480px){
+  .banner {
+    background-position: center;
+  }
+
+  .banner_contents {
+    margin-left: 20px;
+    padding-top: 141px;
+    height: 190px;
+    margin-right: 10px;
+  }
+
+  .banner_title {
+    font-size: 2.0rem;
+    font-weight: 800;
+    padding-bottom: 1rem;
+  }
+
+  .banner_description {
+    max-width: 330px;
+    height: 80px;
+  }
+  
+  .banner_button{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
