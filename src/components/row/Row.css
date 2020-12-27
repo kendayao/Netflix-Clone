@@ -50,7 +50,6 @@
 @media (max-width: 480px){
   .row_poster {
     object-fit: contain;
-    width: 100px;
     margin-bottom: 5px;
   }
 
@@ -61,7 +60,6 @@
 
   .row_poster_myList{
     object-fit: contain;
-    width: 100px;
     margin-bottom: 5px;
   }
   
