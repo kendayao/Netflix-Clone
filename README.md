@@ -60,4 +60,6 @@ For any questions, please contact kendayao at kendayao@gmail.com
 
 Deployed application link: https://netflix-clone-9eed1.web.app
 
+Video demo link: https://giphy.com/gifs/fJ0ENZyqDpF4x8bin6/fullscreen
+
 <img src="public/netflix-clone.png" width="550" height="350">
