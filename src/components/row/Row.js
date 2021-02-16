@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Row.css'
+import {RowContainer, RowPosters, RowPoster, RowPosterMyList, RowTitle, RowTitleMyList} from './Row.styled-components'
 
 import {setTrailerUrl} from '../../redux/trailer/trailer.action'
 import {setMovie} from '../../redux/movie/movie.action'
@@ -31,20 +31,20 @@ const Row=({title, fetch, isMyList, setMovie, myList, setMyList, setTrailerUrl, 
     
     return(
         
-        <div className="row">
+        <RowContainer>
             {isMyList?
-            <h2 className={`${myList.length!==0?'row_title': 'row_hide'}`}>{title}</h2>:
-            <h2 className='row_title'>{title}</h2>}
-            <div className='row_posters'>
+            <RowTitleMyList myListLength={myList.length}>{title}</RowTitleMyList>:
+            <RowTitle >{title}</RowTitle>}
+            <RowPosters>
                 {isMyList?myList.map((movie)=>(
-                    <img onClick={()=>handleClick(movie)} className="row_poster_myList" key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
+                    <RowPosterMyList onClick={()=>handleClick(movie)} key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
                 )):
                 movies.map((movie)=>(
-                    <img onClick={()=>handleClick(movie)} className="row_poster" key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
+                    <RowPoster onClick={()=>handleClick(movie)} key={movie.id} src={base_url+movie?.poster_path} alt={movie.name} />
                 ))}
-            </div>
+            </RowPosters>
             
-        </div>  
+        </RowContainer>  
     )
 }
 

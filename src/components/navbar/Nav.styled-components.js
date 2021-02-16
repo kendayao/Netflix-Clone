@@ -12,7 +12,6 @@ export const NavAvatar=styled.img`
     object-fit: contain;
 `
 
-
 const getNavBarStyles=props=>{
     if(props.show){
         return NavBlack
