@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Nav.css';
 import {NavLogo,NavContainer, NavAvatar} from './Nav.styled-components'
 
 function Nav(){
