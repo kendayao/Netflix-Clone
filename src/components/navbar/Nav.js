@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Nav.css';
+import {NavLogo,NavContainer, NavAvatar} from './Nav.styled-components'
 
 function Nav(){
 
@@ -11,16 +12,19 @@ function Nav(){
                 handleShow(true)
             }else handleShow(false)
         });
-        return()=>{
-            window.removeEventListener("scroll")
-        }
+        return ()=>{
+            window.removeEventListener("scroll",()=>{
+                if(window.scrollY>100){
+                    handleShow(true)
+                }else handleShow(false)
+        })}
     }, [])
 
     return(
-        <div className={`nav ${show&&"nav_black"}`}>
-            <img className="nav_logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo"/>
-            <img className="nav_avatar" src="https://i.pinimg.com/564x/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.jpg" alt="Profile Logo"/>
-        </div>
+        <NavContainer show={show}>
+            <NavLogo src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix Logo"/>
+            <NavAvatar className="nav_avatar" src="https://i.pinimg.com/564x/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.jpg" alt="Profile Logo"/>
+        </NavContainer>
     )
 }
 
