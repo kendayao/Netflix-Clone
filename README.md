@@ -23,6 +23,7 @@ This application is a replica of the popular steaming service, Netflix. Built us
 - Firebase
 - React Hooks
 - Redux
+- Styled Components
 - TMDB API
 - React Youtube
 - CSS
